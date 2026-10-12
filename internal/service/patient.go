@@ -7,9 +7,9 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/your-username/agnos-middleware/internal/hospitalapi"
-	"github.com/your-username/agnos-middleware/internal/model"
-	"github.com/your-username/agnos-middleware/internal/repository"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/hospitalapi"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/model"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/repository"
 )
 
 // PatientService searches patients on behalf of a staff member.

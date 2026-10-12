@@ -7,7 +7,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/your-username/agnos-middleware/internal/auth"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/auth"
 )
 
 const claimsKey = "claims"

@@ -15,13 +15,13 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
-	"github.com/your-username/agnos-middleware/internal/apidocs"
-	"github.com/your-username/agnos-middleware/internal/auth"
-	"github.com/your-username/agnos-middleware/internal/config"
-	"github.com/your-username/agnos-middleware/internal/handler"
-	"github.com/your-username/agnos-middleware/internal/hospitalapi"
-	"github.com/your-username/agnos-middleware/internal/repository"
-	"github.com/your-username/agnos-middleware/internal/service"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/apidocs"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/auth"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/config"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/handler"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/hospitalapi"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/repository"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/service"
 )
 
 func main() {

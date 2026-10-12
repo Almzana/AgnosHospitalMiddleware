@@ -5,8 +5,8 @@ import (
 	"io"
 	"log/slog"
 
-	"github.com/your-username/agnos-middleware/internal/hospitalapi"
-	"github.com/your-username/agnos-middleware/internal/model"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/hospitalapi"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/model"
 )
 
 func discardLogger() *slog.Logger { return slog.New(slog.NewTextHandler(io.Discard, nil)) }

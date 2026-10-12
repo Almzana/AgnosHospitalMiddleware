@@ -5,8 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/your-username/agnos-middleware/internal/auth"
-	"github.com/your-username/agnos-middleware/internal/middleware"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/auth"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/middleware"
 )
 
 // NewRouter registers every route. It is separate from main so tests can build the same router.

@@ -7,7 +7,7 @@ import (
 
 	"github.com/golang-jwt/jwt/v5"
 
-	"github.com/your-username/agnos-middleware/internal/model"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/model"
 )
 
 const secret = "unit-test-secret-0123456789"

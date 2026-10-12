@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/your-username/agnos-middleware/internal/auth"
-	"github.com/your-username/agnos-middleware/internal/model"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/auth"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/model"
 )
 
 var (

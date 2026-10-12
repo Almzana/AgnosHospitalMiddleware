@@ -5,7 +5,7 @@ package repository
 import (
 	"context"
 
-	"github.com/your-username/agnos-middleware/internal/model"
+	"github.com/Almzaba/AgnosHospitalMiddleware/internal/model"
 )
 
 // HospitalRepository reads hospital records.

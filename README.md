@@ -3,7 +3,7 @@
 Go + Gin middleware that lets hospital staff log in and search patients **of their own hospital**,
 pulling patient data from the hospital's HIS API when it is not yet known locally.
 
-Stack: Go 1.22 · Gin · GORM/PostgreSQL · JWT · Docker Compose · Nginx
+Stack: Go 1.26 · Gin · GORM/PostgreSQL · JWT · Docker Compose · Nginx
 
 ## Run
 
