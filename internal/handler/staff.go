@@ -9,8 +9,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/model"
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/service"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/model"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/service"
 )
 
 // StaffHandler serves /staff/*.

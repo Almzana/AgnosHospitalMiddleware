@@ -1,4 +1,4 @@
-module github.com/Almzaba/AgnosHospitalMiddleware
+module github.com/Almzana/AgnosHospitalMiddleware
 
 go 1.26.0
 

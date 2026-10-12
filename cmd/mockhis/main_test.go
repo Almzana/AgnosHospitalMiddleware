@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/hospitalapi"
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/model"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/hospitalapi"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/model"
 )
 
 // The mock is exercised through the real HIS client, which proves both speak the same contract.

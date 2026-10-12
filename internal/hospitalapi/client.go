@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/model"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/model"
 )
 
 // RemotePatient is the JSON body returned by GET {base}/patient/search/{id}.

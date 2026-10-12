@@ -8,8 +8,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/auth"
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/model"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/auth"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/model"
 )
 
 func setup(t *testing.T) (*gin.Engine, *auth.TokenManager) {

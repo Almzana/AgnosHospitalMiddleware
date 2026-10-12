@@ -7,9 +7,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/middleware"
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/model"
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/service"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/middleware"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/model"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/service"
 )
 
 const dateLayout = "2006-01-02"

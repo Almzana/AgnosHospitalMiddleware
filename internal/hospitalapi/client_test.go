@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/model"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/model"
 )
 
 const okBody = `{

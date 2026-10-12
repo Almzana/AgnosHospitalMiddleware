@@ -9,9 +9,9 @@ import (
 
 	"golang.org/x/crypto/bcrypt"
 
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/auth"
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/model"
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/repository"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/auth"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/model"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/repository"
 )
 
 // AuthService manages staff accounts and login.

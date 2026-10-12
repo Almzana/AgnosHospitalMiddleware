@@ -5,8 +5,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/hospitalapi"
-	"github.com/Almzaba/AgnosHospitalMiddleware/internal/model"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/hospitalapi"
+	"github.com/Almzana/AgnosHospitalMiddleware/internal/model"
 )
 
 const hisURL = "https://hospital-a.api.co.th"
