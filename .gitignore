@@ -1,0 +1,8 @@
+.env
+*.out
+coverage.txt
+/server
+.idea/
+.vscode/
+/mockhis
+*.exe

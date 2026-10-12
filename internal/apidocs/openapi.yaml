@@ -1,0 +1,217 @@
+openapi: 3.0.3
+info:
+  title: Agnos Hospital Middleware API
+  version: 1.0.0
+  description: |
+    Hospital staff log in and search patients **of their own hospital**.
+
+    How to try it here:
+    1. `POST /staff/create` to create a staff member (seeded hospitals: `hospital-a`, `hospital-b`).
+    2. `POST /staff/login` with the same body and copy the `token`.
+    3. Click **Authorize** and paste the token (without the `Bearer ` prefix).
+    4. Call `POST /patient/search`.
+servers:
+  - url: /
+tags:
+  - name: health
+  - name: staff
+  - name: patient
+
+paths:
+  /health:
+    get:
+      tags: [health]
+      summary: Liveness check
+      responses:
+        "200":
+          description: Service is up
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, example: ok }
+
+  /staff/create:
+    post:
+      tags: [staff]
+      summary: Create a hospital staff member
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/StaffRequest" }
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/StaffResponse" }
+        "400":
+          description: Invalid JSON, validation failed, or unknown hospital
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+        "409":
+          description: Username already exists in that hospital
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+              example: { error: "staff already exists in this hospital" }
+        "500": { $ref: "#/components/responses/InternalError" }
+
+  /staff/login:
+    post:
+      tags: [staff]
+      summary: Authenticate and receive a JWT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/StaffRequest" }
+      responses:
+        "200":
+          description: Logged in
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/LoginResponse" }
+        "400":
+          description: Invalid JSON or validation failed
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+        "401":
+          description: Unknown hospital, unknown user or wrong password (deliberately indistinguishable)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+              example: { error: "invalid username, password or hospital" }
+        "500": { $ref: "#/components/responses/InternalError" }
+
+  /patient/search:
+    post:
+      tags: [patient]
+      summary: Search patients of the caller's hospital
+      description: |
+        Every field is optional; supplied fields are combined with AND. An empty body returns the
+        hospital's patients (max 100). The hospital is taken from the token.
+
+        If `national_id` or `passport_id` is supplied and nothing matches locally, the hospital's HIS
+        is queried and the result is stored before filtering again.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PatientSearchRequest" }
+            examples:
+              byNationalID:
+                summary: By national ID
+                value: { national_id: "1234567890123" }
+              byName:
+                summary: By name and date of birth
+                value: { first_name: "somchai", date_of_birth: "1990-05-17" }
+              all:
+                summary: All patients (max 100)
+                value: {}
+      responses:
+        "200":
+          description: Matching patients (possibly empty)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PatientSearchResponse" }
+        "400":
+          description: Invalid JSON, wrong field type, or date_of_birth not YYYY-MM-DD
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+        "401":
+          description: Missing, malformed, invalid or expired token
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+        "500": { $ref: "#/components/responses/InternalError" }
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  responses:
+    InternalError:
+      description: Unexpected server error
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+          example: { error: "internal server error" }
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        error: { type: string }
+
+    StaffRequest:
+      type: object
+      required: [username, password, hospital]
+      properties:
+        username: { type: string, minLength: 3, maxLength: 100, example: alice }
+        password: { type: string, minLength: 8, maxLength: 72, example: s3cret-pass }
+        hospital:
+          type: string
+          maxLength: 50
+          description: Hospital code
+          example: hospital-a
+
+    StaffResponse:
+      type: object
+      properties:
+        id: { type: integer, example: 1 }
+        username: { type: string, example: alice }
+        hospital: { type: string, example: hospital-a }
+
+    LoginResponse:
+      type: object
+      properties:
+        token: { type: string }
+        expires_at: { type: string, format: date-time }
+
+    PatientSearchRequest:
+      type: object
+      properties:
+        national_id: { type: string, description: Exact match }
+        passport_id: { type: string, description: Exact match }
+        first_name: { type: string, description: "Contains, case-insensitive, Thai or English" }
+        middle_name: { type: string, description: "Contains, case-insensitive, Thai or English" }
+        last_name: { type: string, description: "Contains, case-insensitive, Thai or English" }
+        date_of_birth: { type: string, format: date, example: "1990-05-17", description: Exact match }
+        phone_number: { type: string, description: Exact match }
+        email: { type: string, description: "Exact match, case-insensitive" }
+
+    Patient:
+      type: object
+      properties:
+        first_name_th: { type: string, example: สมชาย }
+        middle_name_th: { type: string, example: "" }
+        last_name_th: { type: string, example: ใจดี }
+        first_name_en: { type: string, example: Somchai }
+        middle_name_en: { type: string, example: "" }
+        last_name_en: { type: string, example: Jaidee }
+        date_of_birth: { type: string, format: date, example: "1990-05-17" }
+        patient_hn: { type: string, example: HN123 }
+        national_id: { type: string, example: "1234567890123" }
+        passport_id: { type: string, example: "" }
+        phone_number: { type: string, example: "0812345678" }
+        email: { type: string, example: somchai@example.com }
+        gender: { type: string, example: M }
+
+    PatientSearchResponse:
+      type: object
+      properties:
+        count: { type: integer, example: 1 }
+        patients:
+          type: array
+          items: { $ref: "#/components/schemas/Patient" }
